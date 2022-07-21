@@ -12,12 +12,13 @@ const jwt = require("jsonwebtoken");
 const sendEmail = require("../config/sendMail");
 
 const client = new OAuth2Client(`${process.env.MAIL_CLIENT_ID}`);
-// const CLIENT_URL = `http://localhost:3000`;
-const CLIENT_URL = `https://mern-quickshop-app-ecommerce.herokuapp.com`;
+const CLIENT_URL = `http://localhost:3000`;
+// const CLIENT_URL = `https://mern-quickshop-app-ecommerce.herokuapp.com`;
 
 const authCtrl = {
   async register(req, res, next) {
     //  create schema useing joi for validation
+    console.log(req.body) 
 
     const registerSchema = Joi.object({
       name: Joi.string().min(3).max(30).required(),
@@ -52,10 +53,10 @@ const authCtrl = {
       // destructuring object
       const { name, email, password } = req.body;
 
-      if (password?.length < 6) {
+      if (password?.length < 8) {
         return next(
           CustomErrorHandler.badRequest(
-            "Password must be at least 6 charactor."
+            "Password must be at least 8 characters."
           )
         );
       }

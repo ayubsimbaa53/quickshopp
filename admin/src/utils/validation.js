@@ -31,8 +31,8 @@ function validateEmail(email) {
 }
 
 export const checkPassword = (password, cf_password) => {
-  if (password.length < 6) {
-    return "Password must be at least 6 chars.";
+  if (password.length < 8) {
+    return "Password must be at least 8 chars.";
   } else if (password !== cf_password) {
     return "Confirm password did not match.";
   }
